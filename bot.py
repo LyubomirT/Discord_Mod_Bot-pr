@@ -1,7 +1,10 @@
 import nextcord
 from nextcord import Interaction, SlashOption
 from nextcord.ext import commands
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 intents = nextcord.Intents.default()
 intents = nextcord.Intents().all()
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -46,4 +49,4 @@ async def unban(interaction: nextcord.Interaction, user:nextcord.Member):
             await log_channel.send(f"{user.mention} was UN-BANNED by {interaction.user.mention} ")
         await  interaction.guild.unban(user)
 
-bot.run("TOKEN")#add the token , in between ("")
+bot.run(os.environ["BOT_TOKEN"])
